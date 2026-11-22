@@ -1,0 +1,50 @@
+Name: Treyvon Fedrick
+Assignment: DEBUG Exercise - 02
+
+// This pseudocode is intended to display employee net pay values.
+// All employees have a standard $45 deduction from their checks.
+// If an employee does not earn enough to cover the deduction
+// an error message is displayed.
+// CORRECTED VERSION
+start
+   Declarations
+      string name
+      num hours
+      num rate
+      num DEDUCTION = 45                    // FIX: was string; it is used in math so it must be num
+      string EOFNAME = "ZZZ"
+      num gross
+      num net
+
+   output "Enter first name or ", EOFNAME, " to quit"
+   input name
+
+   while name <> EOFNAME                    // FIX: was "if"; a loop is needed to process many employees
+      output "Enter hours worked for ", name
+      input hours
+      output "Enter hourly rate for ", name
+      input rate
+      gross = hours * rate
+      net = gross - DEDUCTION
+      if net > 0 then                       // FIX: was "while"; this is a decision, not a loop
+         output "Net pay for ", name, " is ", net
+      else
+         output "Deductions not covered. Net is 0."
+      endif                                 // FIX: was "endwhile"; must match the if
+      output "Enter next name or ", EOFNAME, " to quit"
+      input name
+   endwhile                                 // FIX: was "endif"; must match the while
+
+   output "End of job"
+stop
+
+// Test plan (desk check)
+// Test 1: Ann, 40 hours, rate 15 -> gross 600, net 555 -> "Net pay for Ann is 555"
+// Test 2: Bob, 2 hours, rate 10 -> gross 20, net -25 -> "Deductions not covered. Net is 0."
+// Test 3: ZZZ -> loop is skipped -> "End of job"
+
+// Summary of errors fixed
+// 1. DEDUCTION declared as string; changed to num
+// 2. "if name not equal to EOFNAME" changed to a while loop
+// 3. "while net > 0 then ... else ... endwhile" changed to if / else / endif
+// 4. Loop closed with endwhile instead of endif

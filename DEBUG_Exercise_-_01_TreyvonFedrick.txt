@@ -1,0 +1,53 @@
+Name: Treyvon Fedrick
+Assignment: DEBUG Exercise - 01
+
+Question: You have been tasked with reviewing and updating this program. What steps would you take to identify any issues in the code?
+Your Response:
+I would start with the declarations and confirm every variable used in the program is declared and spelled the same way everywhere. Next I would read the program line by line and check the syntax of each statement (for example, "ouput" instead of "output"). Then I would check the loop: the while condition depends on firstTest, so firstTest must receive a value with an input statement before the loop starts and again at the end of each pass. After that I would check the math, since average = firstTest + secondTest / 2 divides only secondTest by 2 because of order of operations. Finally I would desk check the program with test values (for example 100 and 80 should give an average of 90 and "Pass"; 50 and 40 should give 45 and "Fail"; and 0 should end the program) and compare the results to what I expect.
+
+Question: What actions could the developer have taken to minimize the number of errors?
+Your Response:
+The developer could have planned the program first with a flowchart or pseudocode and declared every variable up front. Keeping an input statement directly after each prompt would have prevented the missing inputs. Using parentheses to control the order of operations, using consistent and carefully spelled variable names, and adding comments would also have helped. The developer should also have desk checked the code with sample data as it was written, tested the boundary values (such as exactly 60 and 0), and had a peer review the code before finishing.
+
+Debugging Exercise:
+
+// This pseudocode is intended to determine whether students have
+// passed or failed a course; student needs to average 60 or
+// more on two tests.
+// CORRECTED VERSION
+start
+   Declarations
+      num firstTest
+      num secondTest
+      num average
+      num PASSING = 60
+
+   output "Enter first score or 0 to quit "
+   input firstTest                          // FIX: added missing input for the loop control variable
+
+   while firstTest <> 0                     // "<>" means "not equal to"
+      output "Enter second score "
+      input secondTest
+      average = (firstTest + secondTest) / 2    // FIX: parentheses so the sum is divided by 2
+      output "Average is ", average         // FIX: "ouput" misspelled
+      if average >= PASSING then
+         output "Pass"
+      else
+         output "Fail"
+      endif
+      output "Enter first score or 0 to quit "
+      input firstTest                       // FIX: added missing input so the loop can end
+   endwhile
+stop
+
+// Test plan (desk check)
+// Test 1: firstTest = 100, secondTest = 80 -> average = 90 -> "Pass"
+// Test 2: firstTest = 50,  secondTest = 40 -> average = 45 -> "Fail"
+// Test 3: firstTest = 60,  secondTest = 60 -> average = 60 -> "Pass" (boundary)
+// Test 4: firstTest = 0 -> loop is skipped and the program stops
+
+// Summary of errors fixed
+// 1. Missing input firstTest before the while loop
+// 2. Average formula needed parentheses: (firstTest + secondTest) / 2
+// 3. "ouput" misspelled; corrected to "output"
+// 4. Missing input firstTest at the end of the loop (otherwise it would never end)

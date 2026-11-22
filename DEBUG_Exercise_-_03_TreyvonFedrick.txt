@@ -1,0 +1,64 @@
+Name: Treyvon Fedrick
+Assignment: DEBUG Exercise - 03
+
+// This pseudocode is intended to display
+// employee net pay values. All employees have a standard
+// $45 deduction from their checks.
+// If an employee does not earn enough to cover the deduction
+// an error message is displayed.
+// This example is modularized.
+// CORRECTED VERSION
+start
+   Declarations
+      string name
+      string EOFNAME = "ZZZZ"               // FIX: string value needs quotes
+
+   housekeeping()                           // FIX: runs once, not in a loop
+   while name <> EOFNAME                    // FIX: only the main processing is in the loop
+      mainLoop()
+   endwhile
+   finish()                                 // FIX: runs once, not in a loop
+stop
+
+housekeeping()
+   output "Enter first name or ", EOFNAME, " to quit "
+   input name                               // FIX: added missing input
+return
+
+mainLoop()
+   Declarations
+      num hours
+      num rate
+      num gross                             // FIX: gross was used but never declared
+      num DEDUCTION = 45
+      num net
+   output "Enter hours worked for ", name
+   input hours
+   output "Enter hourly rate for ", name
+   input rate
+   gross = hours * rate
+   net = gross - DEDUCTION
+   if net > 0 then
+      output "Net pay for ", name, " is ", net
+   else
+      output "Deductions not covered. Net is 0."
+   endif
+   output "Enter next name or ", EOFNAME, " to quit "
+   input name
+return
+
+finish()
+   output "End of job"
+return
+
+// Test plan (desk check)
+// Test 1: Ann, 40 hours, rate 15 -> gross 600, net 555 -> "Net pay for Ann is 555"
+// Test 2: Bob, 2 hours, rate 10 -> gross 20, net -25 -> "Deductions not covered. Net is 0."
+// Test 3: ZZZZ entered first -> mainLoop is skipped -> "End of job"
+
+// Summary of errors fixed
+// 1. EOFNAME = ZZZZ needed quotes
+// 2. housekeeping() was inside a while loop; it should run once
+// 3. housekeeping() was missing input name
+// 4. finish() was inside a while loop; it should run once
+// 5. gross was not declared in mainLoop()

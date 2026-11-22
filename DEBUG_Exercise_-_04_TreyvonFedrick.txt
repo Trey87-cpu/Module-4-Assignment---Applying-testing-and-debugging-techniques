@@ -1,0 +1,53 @@
+Name: Treyvon Fedrick
+Assignment: DEBUG Exercise - 04
+
+// This pseudocode segment is intended to compute and display
+// the cost of home ownership for any number of users
+// The program ends when a user enters 0 for the mortgage payment
+// CORRECTED VERSION
+start
+   Declarations
+      num mortgagePayment
+      num utilities
+      num taxes
+      num upkeep
+      num total
+
+   startUp()
+   while mortgagePayment <> 0
+      mainLoop()
+   endwhile
+   finishUp()
+stop
+
+startUp()
+   output "Enter your mortgage payment or 0 to quit"
+   input mortgagePayment                    // FIX: was mtgPayment, which was never declared
+return
+
+mainLoop()                                  // FIX: call now matches this name (was MainLoop)
+   output "Enter utilities"
+   input utilities
+   output "Enter taxes"
+   input taxes
+   output "Enter amount for upkeep"
+   input upkeep
+   total = mortgagePayment + utilities + taxes + upkeep
+   output "Total is ", total
+   output "Enter your mortgage payment or 0 to quit"   // FIX: prompt for the next user
+   input mortgagePayment                               // FIX: without this the loop never ends
+return
+
+finishUp()
+   output "End of program"
+return
+
+// Test plan (desk check)
+// Test 1: mortgage 1000, utilities 200, taxes 150, upkeep 50 -> "Total is 1400"; then 0 -> "End of program"
+// Test 2: two users in a row (1000/200/150/50, then 800/100/100/0) -> totals 1400 and 1000; then 0 ends
+// Test 3: 0 entered first -> loop skipped -> "End of program"
+
+// Summary of errors fixed
+// 1. startUp() read into mtgPayment instead of the declared variable mortgagePayment
+// 2. Main program called startup() and MainLoop(); names did not match startUp() and mainLoop()
+// 3. mainLoop() never asked for the next mortgage payment, causing an infinite loop
